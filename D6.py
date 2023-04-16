@@ -1,5 +1,6 @@
 from random import randint
 
+#test
 
 class D6:
     def __init__(self):
