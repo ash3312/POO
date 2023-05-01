@@ -36,7 +36,26 @@ class Point:
         return math.hypot(self.x, self.y, _x, _y)
 
 
-p1 = Point(0, 0)
-p2 = Point(1, 1)
-print(p1.distance_from_point(p2))
-print(p1.distance(1, 1))
+# p1 = Point(0, 0)
+# p2 = Point(1, 1)
+# print(p1.distance_from_point(p2))
+# print(p1.distance(1, 1))
+
+
+class Triangle:
+    def __init__(self, p1, p2, p3) -> None:
+        if not isinstance(p1, Point) or not isinstance(p2, Point) or not isinstance(p2, Point):
+            raise TypeError("Should be points")
+        self.__points = [p1, p2, p3]
+
+    def perimeter(self):
+        somme = 0
+        for t in self.__points:
+            for tt in self.__points:
+              if t != tt:
+                somme +=  t.distance_from_point(tt)
+        return somme / 2
+
+
+tr = Triangle(Point(0,0), Point(1,0), Point(0,1))
+print(tr.perimeter())

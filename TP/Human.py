@@ -86,14 +86,35 @@ class Sorciers(Humain):
     def sePresenter(self):
         return super().sePresenter() + f" {self.baguette} {self.sortileges} {Sorciers.maisons[self.maison]}"
 
-    def lancerSort(self, nom):
-        if nom in self.sortileges: 
-            return f" le sort {nom} a été créé"
+    def lancerSort(self, sortilege):
+        # if nom in self.sortileges: 
+        #     return f" le sort {nom} a été créé"
+        # else:
+        #     return "Error no sort"
+        if sortilege in self.sortileges:
+            return sortilege.seLancer()
         else:
             return "Error no sort"
+
+
+
         
-    def apprendre(self, nom):
-        self.sortileges.append(nom)
+    def apprendre(self, sortilege):
+        self.sortileges.append(sortilege)
+
+
+class Sortilege:
+    def __init__(self, formule, effet, impardonnable) -> None:
+        self.formule = formule
+        self.effet = effet
+        self.impardonnable = impardonnable
+
+    def seLancer(self):
+        return f"le sort: {self.formule} a été lancé"
+    
+    def desc(self):
+         return f"{self.formule} {self.effet}"
+
     
 # m1 = Moldus("majdy", "m", 2010, "it", 0, [Humain("ashraf", "ash", 1993)])
 
@@ -101,9 +122,17 @@ class Sorciers(Humain):
 
 s1 = Sorciers("daood","majdy", 1983, "b1", 0)
 
-print(s1.sePresenter())
-print(s1.lancerSort("abra"))
+# print(s1.sePresenter())
+# print(s1.lancerSort("abra"))
 
-s1.apprendre("abra")
-print(s1.lancerSort("abra"))
+# s1.apprendre("abra")
+# print(s1.lancerSort("abra"))
+# print(s1.sePresenter())
+
 print(s1.sePresenter())
+sor = Sortilege("abra", "killing", False)
+
+s1.apprendre(sor)
+
+print(s1.lancerSort(sor))
+print(sor.desc())
